@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block contents %}
+<div class="row mt-5">
+  <div class="col-12 text-center">
+    <h1>인증파 홈페이지</h1>
+  </div>
+</div>
+<div class="row mt-5">
+  {% if request.session.user %}
+  <div class="col-3">
+    <button class="btn btn-primary btn-block" onclick="location.href='/ai/gesture/'">손 제스처 등록</button>
+  </div>
+  <div class="col-3">
+    <button class="btn btn-primary btn-block" onclick="location.href='/ai/authentication/'">손 제스처 인증</button>
+  </div>
+  <div class="col-3">
+    <button class="btn btn-primary btn-block" onclick="location.href='/fcuser/passwordchange/'">PW 변경</button>
+  </div>
+  <div class="col-3">
+    <button class="btn btn-primary btn-block" onclick="location.href='/fcuser/logout/'">로그아웃</button>
+  </div>
+  <div class="col-12">
+    <button class="btn btn-primary btn-block" onclick="location.href='/ai/learnedgesture/'">손 제스처 제어</button>
+  </div>
+  <div class="col-12">
+    <button class="btn btn-primary btn-block" onclick="location.href='/board/list/'">Q&A</button>
+  </div>
+  <div class="col-12">
+    <button class="btn btn-primary btn-block" onclick="location.href='/fcuser/sendemail/'">이메일 전송</button>
+  </div>
+  <div class="col-12 text-center">
+    <iframe src="https://kverse.kangwon.ac.kr/duri"
+      style="overflow-x:hidden; overflow:auto; width:100%; min-height:800px;"></iframe>
+  </div>
+  {% else %}
+  <div class="col-6">
+    <button class="btn btn-primary btn-block" onclick="location.href='/fcuser/register/'">회원가입</button>
+  </div>
+  <div class="col-6">
+    <button class="btn btn-primary btn-block" onclick="location.href='/fcuser/login/'">로그인</button>
+  </div>
+  <div class="col-12">
+    <button class="btn btn-primary btn-block" onclick="location.href='/fcuser/sendemail/'">이메일 전송</button>
+  </div>
+  <div class="col-12 text-center">
+    <img src="static/Spin-loading.gif" style="overflow-x:hidden; overflow:auto; width:100%; min-height:300px;">
+  </div>
+
+  {% endif %}
+</div>
+{% endblock %}

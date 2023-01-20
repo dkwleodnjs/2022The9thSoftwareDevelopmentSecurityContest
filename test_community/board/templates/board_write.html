@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block header %}
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+<script>
+  $(document).ready(function () {
+    $('#id_writecontents').summernote({
+      height: 400
+    });
+  });
+</script>
+{% endblock %}
+{% block contents %}
+<div class="row mt-5">
+  <div class="col-12">
+    {% autoescape on %}
+    <form method="POST" action=".">
+      {% csrf_token %}
+      {% for field in form %}
+      <div class="form-group">
+        {% autoescape on %}
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {{ field.field.widget.name }}
+        {% if field.name == 'writecontents' %}
+        <textarea class="form-control" name="{{ field.name }}" placeholder="{{ field.label }}"
+          id="{{ field.id_for_label }}"></textarea>
+        {% else %}
+        <input type="{{ field.field.widget.input_type }}" class="form-control" id="{{ field.id_for_label }}"
+          placeholder="{{ field.label }}" name="{{ field.name }}" />
+        {% endif %}
+        {% endautoescape %}
+      </div>
+      {% if field.errors %}
+      <span style="color: red">{{ field.errors }}</span>
+      {% endif %}
+      {% endfor %}
+      <button type="submit" class="btn btn-primary">저장</button>
+      <button type="button" class="btn btn-primary" onclick="location.href='/board/list/'">돌아가기</button>
+    </form>
+    {% endautoescape %}
+  </div>
+</div>
+{% endblock %}

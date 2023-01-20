@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block contents %}
+<div class="row mt-5">
+  <div class="col-12 text-center">
+    <h1>손 제스처 인증</h1>
+  </div>
+</div>
+<div class="row mt-5">
+  <div class="col-3">
+    <button class="btn btn-primary btn-block" onclick="location.href='/ai/gesture/'">손 제스처 등록</button>
+  </div>
+  <div class="col-3">
+    <button class="btn btn-primary btn-block" onclick="location.href='/ai/learnedgesture/'">손 제스처 제어</button>
+  </div>
+  <div class="col-3">
+    <button class="btn btn-primary btn-block" onclick="location.href='/board/list/'">Q&A</button>
+  </div>
+  <div class="col-3">
+    <button class="btn btn-primary btn-block" onclick="location.href='/fcuser/logout/'">로그아웃</button>
+  </div>
+</div>
+<div class="row mt-5">
+  <div class="col-12 text-center">
+    <img src="https://127.0.0.1:8000/ai/authenticationmonitor/"
+      style="overflow-x:hidden; overflow:auto; width:100%; min-height:300px;">
+    <h4 class="col-12 text-center">손 제스처 등록에서 등록한 "me"의 제스처를 5초 동안 주세요.</h4>
+    <h3 class="col-12 text-center">화면이 안나온다면 "손 제스처 등록"부터 해주세요.</h3>
+  </div>
+</div>
+<div class="row mt-5">
+  <div class="col-12">
+    <form method="POST" action=".">
+      {% csrf_token %}
+      <button type="button" class="btn btn-primary" onclick="location.href='/ai/authentication/'">재시작</button>
+      <button type="button" class="btn btn-primary" onclick="location.href='/'">돌아가기</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

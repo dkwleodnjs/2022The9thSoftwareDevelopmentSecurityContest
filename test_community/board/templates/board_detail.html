@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block contents %}
+<div class="row mt-5">
+  <div class="col-12">
+    <div class="card" style="width: 100%;">
+      <div class="card-body">
+        <h5 class="card-title">제목 : {{ board.title }}</h5>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">{{ board.writecontents|safe }}</li>
+      </ul>
+    </div>
+    {% if writer %}
+    <button type="button" class="btn btn-primary"
+      onclick="location.href='/board/detail/{{ board.id }}/delete'">삭제하기</button>
+    <button type="button" class="btn btn-primary"
+      onclick="location.href='/board/detail/{{ board.id }}/update'">수정하기</button>
+    {% endif %}
+    <button class="btn btn-primary" onclick="location.href='/board/list/'">돌아가기</button>
+  </div>
+</div>
+{% endblock %}

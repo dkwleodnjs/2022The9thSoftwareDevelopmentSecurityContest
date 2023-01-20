@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block contents %}
+<div class="row mt-5">
+  <div class="col-12 text-center">
+    <h1>손 제스처 등록</h1>
+  </div>
+</div>
+<div class="row mt-5">
+  <div class="col-3">
+    <button class="btn btn-primary btn-block" onclick="location.href='/ai/authentication/'">손 제스처 인증</button>
+  </div>
+  <div class="col-3">
+    <button class="btn btn-primary btn-block" onclick="location.href='/ai/learnedgesture/'">손 제스처 제어</button>
+  </div>
+  <div class="col-3">
+    <button class="btn btn-primary btn-block" onclick="location.href='/board/list/'">Q&A</button>
+  </div>
+  <div class="col-3">
+    <button class="btn btn-primary btn-block" onclick="location.href='/fcuser/logout/'">로그아웃</button>
+  </div>
+</div>
+<div class="row mt-5">
+  {% if request.session.exist == 0%}
+  <div class="col-12 text-center">
+    <img src="https://127.0.0.1:8000/ai/initmonitor/"
+      style="overflow-x:hidden; overflow:auto; width:100%; min-height:300px;">
+  </div>
+  {% elif request.session.exist == 1%}
+  <div class="col-12 text-center">
+    <img src="https://127.0.0.1:8000/ai/learningmonitor/"
+      style="overflow-x:hidden; overflow:auto; width:100%; min-height:300px;">
+      <h3 class="col-12 text-center">화면이 잠깐 멈출 때 다른 제스쳐를 주세요</h3>
+      <h5 class="col-12 text-center">동작이 완료되면 화면이 멈춥니다. 1분 뒤에 '손 제스처 제어'로 가보세요. </h5>
+  </div>
+  {% endif %}
+</div>
+<div class="row mt-5">
+  <div class="col-12 text-center">
+    <h3>{{ error }}</h3>
+  </div>
+</div>
+<div class="row mt-5">
+  <div class="col-12">
+    {% autoescape on %}
+    <form method="POST" action=".">
+      <button type="submit" class="btn btn-primary">등록</button>
+      <button type="button" class="btn btn-primary" onclick="location.href='/ai/gesture/'">재시작</button>
+      <button type="button" class="btn btn-primary" onclick="location.href='/'">돌아가기</button>
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="motion_nam1">모션1 이름 입력</label>
+        <input type="text" class="form-control" id="motion_name1" placeholder="모션1 이름 입력" name="motion_name1" />
+        <label for="motion_name2">모션2 이름 입력</label>
+        <input type="text" class="form-control" id="motion_name2" placeholder="모션2 이름 입력" name="motion_name2" />
+        <label for="motion_name3">모션3 이름 입력</label>
+        <input type="text" class="form-control" id="motion_name3" placeholder="모션3 이름 입력" name="motion_name3" />
+        <label for="motion_name4">모션4 이름 입력</label>
+        <input type="text" class="form-control" id="motion_name4" placeholder="모션4 이름 입력" name="motion_name4" />
+        <label for="motion_name5">모션5 이름 입력</label>
+        <input type="text" class="form-control" id="motion_name5" placeholder="모션5 이름 입력" name="motion_name5" />
+        <label for="motion_name6">모션6 이름 입력</label>
+        <input type="text" class="form-control" id="motion_name6" placeholder="모션6 이름 입력" name="motion_name6" />
+      </div>
+    </form>
+    {% endautoescape %}
+  </div>
+</div>
+{% endblock %}
